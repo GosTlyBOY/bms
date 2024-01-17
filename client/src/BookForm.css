@@ -1,0 +1,164 @@
+/* BookForm.css */
+.book-form {
+    background-color: rgba(0, 0, 0, 0.9);
+    max-width: 60%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    z-index: 2;
+    justify-content: space-evenly;  
+  }
+
+  .prev{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card-preview {
+    width: 250px;
+    height: 380px;  
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  .card-image {
+    width: 250px;
+    height: 380px; 
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+  }
+
+  .upload-content{
+    margin-top:50%;
+  }
+
+  .image-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .image-preview {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    position: relative;
+  }
+  
+
+
+.form-text{
+    width: 50%;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+}
+.form-text .input-control{
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid white;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 16px;
+    background-color: black;
+    padding: 0 20px;
+    color: white;
+    margin-top: 3%;
+}
+
+.glow-on-hover1 {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    /* left:20%; */
+    border: white 2px solid ;
+}
+
+.glow-on-hover1:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover1:active {
+    color: #000
+}
+
+.glow-on-hover1:active:after {
+    background: transparent;
+}
+
+.glow-on-hover1:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover1:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+
+@media (min-width: 375px) and (max-width: 930px){
+    .book-form {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .form-text{
+        margin-top: 10px;
+        width: 100%;
+    }
+    .card-preview {
+        height: auto;
+        width: 100%;
+    }
+    .upload-content{
+      margin-top: 0%;
+    }
+}
