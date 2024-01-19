@@ -3,7 +3,6 @@ import Card from './card';
 import Form from './BookForm'
 import { useEffect, useState } from "react";
 import axios from "axios";
-require("dotenv").config();
 
 
 import Fab from '@mui/material/Fab';
@@ -18,7 +17,7 @@ function BookList({setSnackBarShow, setSnackBarMsg}) {
   useEffect(()=>{
     const getBooks =  async()=>{
       const res = await axios.get(
-        process.env.SERVER_URL+"/booksmgmt/getbooks",
+        "http://localhost:4000/booksmgmt/getbooks",
         { withCredentials: true }
         );
         setBooksData(res.data)

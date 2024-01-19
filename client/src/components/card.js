@@ -5,7 +5,6 @@ import axios from "axios";
 import { Chip } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-require("dotenv").config();
 
 
 const Card = ({ photo, title, genres, author, id, deleteBookFromState, setSnackBarShow, setSnackBarMsg }) => {
@@ -18,7 +17,7 @@ const Card = ({ photo, title, genres, author, id, deleteBookFromState, setSnackB
   const deleteBook = async ()=>{
     setSnackBarMsg("Deleting book...")
     setSnackBarShow(true)
-    const response = await axios.delete(process.env.SERVER_URL+`/booksmgmt/removebook/${id}`, {withCredentials: true});
+    const response = await axios.delete(`http://localhost:4000/booksmgmt/removebook/${id}`, {withCredentials: true});
     setSnackBarShow(false)
     if(response.status===200){
       deleteBookFromState(id)

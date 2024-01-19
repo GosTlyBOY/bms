@@ -4,7 +4,6 @@ import { Cookies, useCookies } from "react-cookie";
 import axios from "axios";
 import BookList from './BookList'
 import Snackbar from '@mui/material/Snackbar';
-require("dotenv").config();
 
 
 
@@ -22,7 +21,7 @@ useEffect(() => {
       navigate("/login");
     }
     const { data } = await axios.get(
-      process.env.SERVER_URL+"/auth",
+      "http://localhost:4000/auth",
       { withCredentials: true }
       );
       const { status, user } = data;

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-require("dotenv").config();
 
 
 const Login = () => {
@@ -33,7 +32,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        process.env.SERVER_URL+"/auth/login",
+        "http://localhost:4000/auth/login",
         {
           ...inputValue,
         },

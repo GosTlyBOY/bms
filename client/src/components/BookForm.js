@@ -3,7 +3,6 @@ import '../css/BookForm.css'; // Import the CSS file
 import UploadIcon from '@mui/icons-material/Upload';
 import axios from "axios";
 import CloseIcon from '@mui/icons-material/Close';
-require("dotenv").config();
 
 
 const BookForm = ({addBookToState, closeForm, setSnackBarShow,setSnackBarMsg}) => {
@@ -78,7 +77,7 @@ const BookForm = ({addBookToState, closeForm, setSnackBarShow,setSnackBarMsg}) =
       setSnackBarShow(true)
       const addBook =  async()=>{
         const res = await axios.post(
-          process.env.SERVER_URL+"/booksmgmt/addbook",
+          "http://localhost:4000/booksmgmt/addbook",
           currformData,
           { headers:{
             'Content-Type': 'multipart/form-data',
