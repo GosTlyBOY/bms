@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+// const argon = require("argon2");
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -11,10 +12,6 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Book'
   }],
-  username: {
-    type: String,
-    required: [true, "Your username is required"],
-  },
   password: {
     type: String,
     required: [true, "Your password is required"],
@@ -25,8 +22,8 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre("save", async function () {
-  this.password = await bcrypt.hash(this.password, 12);
-});
+// userSchema.pre("save", async function () {
+//   this.password = await bcrypt.hash(this.password,10);
+// });
 
 module.exports = mongoose.model("User", userSchema);

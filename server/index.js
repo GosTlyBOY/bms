@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
+const fileUpload = require('express-fileupload');
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
@@ -28,6 +29,8 @@ app.use(
   })
 );
 app.use(cookieParser());
+
+app.use(fileUpload());
 
 app.use(express.json());
 

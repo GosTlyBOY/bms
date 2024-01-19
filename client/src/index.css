@@ -28,30 +28,29 @@ code {
 html {
   height: 100%;
   width: 100%;
-  background-color: #000;
+  background-color: #ffffff;
 }
 
 
 .login_signup{
   height: 100vh;
   width: 100vw;
-  background-color: #000;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .form_container {
-  background-color: #000000;
+  background-color: #2b57e6;
   padding: 2rem 3rem;
   border-radius: 0.5rem;
   width: 100%;
   height: auto;
   max-width: 400px;
-  /* box-shadow: 0px 0px 24px 0px rgb(255, 255, 255); */
+  box-shadow: 0px 0px 40px 0px #2b57e6;
   border : solid 1px white;
   
 }
-
 .form_container_h2 {
   margin-block: 1rem;
   padding-block: 0.6rem;
@@ -71,8 +70,8 @@ html {
   border: none;
   padding: 0.5rem;
   border: 1px solid rgb(255, 255, 255);
-  background-color: #000;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   font-size: 1.1rem;
   outline: none;
   border-radius: 25px;
@@ -85,7 +84,7 @@ html {
 }
 
 .form_button {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(71, 190, 28);
   display: flex;
   color: #fff;
   border: none;
@@ -106,13 +105,14 @@ html {
 }
 .quick_shifter_login_singup a {
   text-decoration: none;
-  color: rgba(0, 212, 255, 1);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
 }
 
 
 
 .navbar span {
-  color: rgba(0, 212, 255, 1);
+  color: #2b57e6;
 }
 
 .navbar {
@@ -169,6 +169,11 @@ html {
   .logout_button{
     left: -25%;
     top:40%
+  }
+}
+@media (min-width:1500px){
+  .logout_button{
+    top:35%
   }
 }
 

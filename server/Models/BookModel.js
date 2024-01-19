@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 
 const bookSchema = new mongoose.Schema({
   bookCover:{
-    type: Buffer,
+    imgBuffer:{
+      type: Buffer,
+    },
+    imgExt:{
+      type: String
+    }
   },
   bookTitle: {
     type: String,
@@ -14,17 +18,13 @@ const bookSchema = new mongoose.Schema({
     required: [true, "Author of book is required"],
   },
   bookGenre:{
-    type: Array,
+    type: [String],
+    required: true
   },
   createdAt: {
     type: Date,
     default: new Date(),
   },
-  // indexes:[{unique: true, fields:['bookTitle','bookAuthor']}]
-});
-
-bookSchema.pre("save", async function () {
-  this.password = await bcrypt.hash(this.password, 12);
 });
 
 module.exports = mongoose.model("Book", bookSchema);

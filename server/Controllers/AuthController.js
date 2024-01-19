@@ -1,15 +1,17 @@
 const User = require("../Models/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
+
 
 module.exports.Signup = async (req, res, next) => {
   try {
-    const { email, password, username, createdAt } = req.body;
+    const { email, password, createdAt } = req.body;
+    const encryptedPassword = await bcrypt.hash(password,10);
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.json({ message: "User already exists" });
     }
-    const user = await User.create({ email, password, username, createdAt });
+    const user = await User.create({ email, password: encryptedPassword, createdAt });
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       withCredentials: true,
@@ -18,11 +20,13 @@ module.exports.Signup = async (req, res, next) => {
     res
       .status(201)
       .json({ message: "User signed in successfully", success: true, user });
-    next();
+    // next();
   } catch (error) {
     console.error(error);
   }
 };
+
+
 
 module.exports.Login = async (req, res, next) => {
     try {
@@ -32,20 +36,33 @@ module.exports.Login = async (req, res, next) => {
       }
       const user = await User.findOne({ email });
       if(!user){
-        return res.json({message:'Incorrect password or email' }) 
+        return res.json({message:'email not registered' }) 
       }
-      const auth = await bcrypt.compare(password,user.password)
+
+      const auth = await bcrypt.compare(password,user.password);
+
       if (!auth) {
-        return res.json({message:'Incorrect password or email' }) 
+        return res.json({message:'Incorrect password' }) 
       }
-       const token = createSecretToken(user._id);
+      const token = createSecretToken(user._id);
        res.cookie("token", token, {
          withCredentials: true,
          httpOnly: false,
        });
        res.status(201).json({ message: "User logged in successfully", success: true });
-       next()
+      //  next()
     } catch (error) {
       console.error(error);
     }
 };
+
+module.exports.GetUserEmail = async (req, res) => {
+
+  const userEmail = req.user.email;
+  if (userEmail){
+    return res.status(201).json({user:userEmail, status:true})
+  }
+  else{
+    return res.json({message:'Incorrect password or email' }) 
+  }
+}

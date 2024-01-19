@@ -1,6 +1,0 @@
-bookAdmin
-bookTitle
-bookAuthor
-bookGenre []
-bookCover:Buffer
-createdAt
