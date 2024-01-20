@@ -3,6 +3,8 @@ import Card from './card';
 import Form from './BookForm'
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 
 import Fab from '@mui/material/Fab';
@@ -13,17 +15,27 @@ function BookList({setSnackBarShow, setSnackBarMsg}) {
   const [booksData, setBooksData] = useState([]);
   //to open form
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const navigate = useNavigate();
+
   
   useEffect(()=>{
     const getBooks =  async()=>{
+    try {
+
       const res = await axios.get(
         "http://localhost:4000/booksmgmt/getbooks",
         { withCredentials: true }
         );
+        if (res.status===501){
+          navigate("/login");
+        }
         setBooksData(res.data)
+      } catch (error) {
+        navigate("/login");
+      }
       }
       getBooks();
-    },[])
+    },[navigate])
     
     
     const addBookToState = (newBookData)=>{

@@ -5,8 +5,6 @@ import axios from "axios";
 import BookList from './BookList'
 import Snackbar from '@mui/material/Snackbar';
 
-
-
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
@@ -14,29 +12,31 @@ const Home = () => {
   const [snackBarShow, setSnackBarShow] = useState(false);
   const [snackBarMsg, setSnackBarMsg] = useState("");
 
-
 useEffect(() => {
   const verifyCookie = async () => {
     if (!cookies.token) {
       navigate("/login");
     }
+    try{
     const { data } = await axios.get(
       "http://localhost:4000/auth",
       { withCredentials: true }
       );
+      console.log(data.status)
       const { status, user } = data;
       if(!status){
         removeCookie("token");
         navigate("/login");
       }else{
-
         setName(user.split('@')[0]);
       }
+    }
+    catch(error){
+      navigate("/login")
+    }
   };
   verifyCookie();
 }, [cookies, navigate, removeCookie]);
-
-
   const Logout = () => {
     removeCookie("token");
     navigate("/login");
